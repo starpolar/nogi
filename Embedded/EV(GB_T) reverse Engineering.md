@@ -23,7 +23,7 @@ Power Module이 설정값을 적용하고 충전 진행
 CCU가 충전 상태를 모니터링하며 Power Module 제어  
 충전 완료 또는 EV에서 충전 중지 요청 시 충전 종료  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/0a77965b-73b6-4d55-ab68-72c542526e2b-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/36e32555-4de6-4f7f-a1d2-4193559cf885-image.png)  
   
 ---  
 1. 분석 프로세스 개요  
