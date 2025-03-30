@@ -3,18 +3,18 @@
 * ECU(Eloctronic Control Unit)는? MCU를 포함하고 여러 제어 장치, 통신 등등을 추가해 포함한것.  
 * CCU(Central Communication Unit)는? 여러 ECU간의 통신을 제어하는 중앙 장치.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/6e40c0b8-5d6a-4f7b-a414-d82706b8ca0d-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/0b4fbc87-c1f6-4549-a4b5-bf26962e641e-image.png)  
 * CPU, CAN 컨트롤러, 트랜시버로 구성돼있고, 트위스트 페어로 시리얼 통신을 하되, 멀티 마스터로 버스에 물려있는 형태로 구성.  
 * 자동차 산업에서는 안전, 편리, 공해, 운용의 경제성.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/740123dc-1fff-4e10-a362-63aaff0fc003-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/c6aef646-d73c-4d5b-93f4-c451c0d293d8-image.png)  
 * 초기 차량의 네트워크망은 UART구조 였다. 사용자의 서비스 요구사항이 많아지면서 ECU가 많아지고 케이블이 늘어나며 공간이 좁아져 편리함 감소하고, 무게가 늘어 연비가 감소해 경제성이 낮아졌다. 그래서 그 당시에 통신은 RS485였고 하지만 안정성이 안좋아 직접 만들자고 한게 CAN 통신이였다.  
   
 * CAN의 특징 및 장점  
   
 * 차량엔 크게 3가지 네트워크로 나눠져 있고 파워트레인(엔진 부분), 차체 제어, 멀티미디어다. 각각은 게이트웨이로 이어져있고, 나뉜 이유는 효율성을 위해서다.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/8806ddb4-73bd-4726-ad1e-a9c48a100c46-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/aba19549-eb87-4a15-9f95-4fe2e3316112-image.png)  
 * osi 레퍼런스 모델 7계층중에서 아래 1계층부터 비트를 데이터로 바꾸며 계층을 올라가면 헤더를 빼고, 내려가면 헤더를 더하며 데이터가 올라가고 내려간다. 이것을 캡슐레이션이라고 부름.  
 * CAN의 계층 모델과 구현 모델  
   
@@ -32,3 +32,4 @@
 * CAN Frame의 확장형  
 * Frame의 종류  
   
+* Frame의 구조  
