@@ -10,18 +10,18 @@
 * ECU(Eloctronic Control Unit)는? MCU를 포함하고 여러 제어 장치, 통신 등등을 추가해 포함한것.  
 * CCU(Central Communication Unit)는? 여러 ECU간의 통신을 제어하는 중앙 장치.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/94ddfefc-3f02-4770-b948-df6f40967b8e-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/e5023628-9ad6-472f-8130-b790f937f1e8-image.png)  
 * CPU, CAN 컨트롤러, 트랜시버로 구성돼있고, 트위스트 페어로 시리얼 통신을 하되, 멀티 마스터로 버스에 물려있는 형태로 구성.  
 * 자동차 산업에서는 안전, 편리, 공해, 운용의 경제성.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/af66b8a9-0654-4a04-82da-eb710e2d687f-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/854c60d1-3e0d-4927-b8ee-5497fef9d2df-image.png)  
 * 초기 차량의 네트워크망은 UART구조 였다. 사용자의 서비스 요구사항이 많아지면서 ECU가 많아지고 케이블이 늘어나며 공간이 좁아져 편리함 감소하고, 무게가 늘어 연비가 감소해 경제성이 낮아졌다. 그래서 그 당시에 통신은 RS485였고 하지만 안정성이 안좋아 직접 만들자고 한게 CAN 통신이였다.  
   
 * CAN의 특징 및 장점  
   
 * 차량엔 크게 3가지 네트워크로 나눠져 있고 파워트레인(엔진 부분), 차체 제어, 멀티미디어다. 각각은 게이트웨이로 이어져있고, 나뉜 이유는 효율성을 위해서다.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/9dec8202-0712-4ba7-b9f4-2051b7e6ca03-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/6bcb4e8f-7113-4734-a4d8-dedf34d6ea12-image.png)  
 * osi 레퍼런스 모델 7계층중에서 아래 1계층부터 비트를 데이터로 바꾸며 계층을 올라가면 헤더를 빼고, 내려가면 헤더를 더하며 데이터가 올라가고 내려간다. 이것을 캡슐레이션이라고 부름.  
 * CAN의 계층 모델과 구현 모델  
   
@@ -46,7 +46,7 @@
 ---  
 **CAN의 에러처리**  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/e4c7e049-888f-441e-9f55-84afafbe6b92-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/8b279037-25a2-47f4-b8f8-4b02614c71e7-image.png)  
 * 비트 에러 감지  
 * 스터핑 비트 검사  
 * 메세지 형식 검사  
@@ -54,18 +54,18 @@
 * ACK 검사  
   
 **에러 검사 범위**  
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/40724e14-0acb-4fae-90d6-48bcc402eec8-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/13812f2f-9712-4829-826e-9cc3786b5b64-image.png)  
 * 각 에러 종류들의 검사 범위들.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/a26144e5-6ed3-4804-a7f3-20676154a5a5-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/7d67b86b-0ac5-4d4b-82ad-2ba2a4c61864-image.png)  
 * 문제가 생겼을때 Error Counter을 1개씩 올리고, 심각한 문제가 생겼을때는 한 8개씩 많이 올린다. 그리고 정상적인 메세지 송수신이 완료되면 에러 카운터를 1개씩 줄여 나간다. 그래서  즉, 정상적인 상태의 기기는 적당한 선에서 에러카운터가 유지가 되고 있다.  
 * Error Active: 이상하지 않는 일반적인 상태. Error Passive: TEC, REC가 >127 인 상태로 문제가 있는 상태. Bus OFF: 버스 정지. 다시 Active 상태로 동작하려면? 소프트웨어 리셋 or  11개의 연속적인 열성(1)비트열 128번 발생.(열성의 긴 비트를 송신할 때 중간에 아무도 통신을 사용하지 않아야만 이 상태를 유지할 수 있다.)= IDLE 상태. 하지만 이런 상태가 되지도 않을 뿐더러 그전에 교체를 해야된다함.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/13f1427a-c927-4eed-a42b-251780afbb5e-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/ba3205de-43a7-4132-8ebd-1c9fdee85ae6-image.png)  
 * 능동 에러 프레임은 우성(0)으로 6비트가 이어지고, 수동 에러 프레임은 열성(1)으로 6비트가 이어진다. 즉, 에러 프레임만 봐도 장비의 상태를 알 수 있다.  
 * 에러프레임은 데이터 프레임 도중에 발생해서 그 후로 쭉 에러프레임을 날린다.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/3198c78a-23f0-487d-9362-e2edd1a25ddd-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/ad490897-4b6e-45e5-a2cd-80b26b505bcf-image.png)  
 * 에러프레임 이후 IFS(inter frame space)라고 3비트를 날린 후 다시 데이터프레임 전송 재시도를 한다.  
 * Bus Off는 아예 못쓰는 상태이기 때문에 제외하고 나머지 active, passive 두개만 다룬다.  
 * Passive 에서는 Active와 다르게 IFS 후 재전송 시 8비트의 텀이 있다. 이는 오류가 많이나는 노드이니 패널티 식으로 더 쉬는것이고, 이 때문에 우선순위에 밀리며, 다른 정상적 노드들을 방해하지 마라라는 뜻의 기능이다. (suspend: 일시중단, transmission: 전송)  
@@ -75,29 +75,29 @@
 ---  
 **CAN 통신의 미래**  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/c7a0b6d0-a22a-435f-8827-442446dadbaf-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/3645569b-3caa-4087-a931-62ec9fbdf04f-image.png)  
 * CAN FD의 차이점은? 기존의 데이터 프레임은 중재구간과 데이터 구간으로 나눴다. 그리고 데이터 구간을 8배 빠르게 전송 하면서 데이터량이 기존 8 Byte에서 64 Byte로 증가했다. 그래서 기존에는 클럭의 주기가 모두 같았지만, FD는 나뉜다.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/43f1ab8a-34cb-4493-b020-1375c70f745d-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/94f3e14f-a0c4-43d0-8f7a-98d13110fec6-image.png)  
 * 기존 CAN과의 호환성. 어떻게? 데이터 필드만 빼고 나머지는 같게 할 수 있는듯.  
 * FlexRay보다 더 대두되고 있는 FD.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/89f48eb6-7b86-437a-9fc5-8a819bd1852b-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/bdf636b5-c7c3-4fb4-94d7-69a1c7679573-image.png)  
 * 각 상태를 표시해주는 비트들을 추가.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/f8dfcfe7-ce71-4fad-a0a4-670581d9dce3-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/32ff7f13-ed61-4248-a393-424e1d1fa8c3-image.png)  
 * 일반 CAN에서는 특허가 만료가 되서 특별한건 많이 없어졌고, XL같이 다른건 특허가 보쉬사에 유효하기에, 사용하려면 로얄티를 지불해야 할 것임.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/677d4c5e-2b0c-4bdc-a55f-6fb0c68cec91-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/ce6c5cfa-7409-45f7-ba5b-3ba01d5ede9b-image.png)  
 * XL에는 Acceptance Field가 추가.(Acceptance: 수락)  
 * FD에 CRC가 두가지 유형인데, 데이터 필드의 바이트 수의 따라서 어느정도 기준하에 작을때는 17, 클땐 21비트로 나뉨.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/14176775-1a65-416d-b89c-94fb3f3c17f1-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/eccce90c-f20b-4e0d-8544-e0a39cf8716a-image.png)  
 * 차량의 네트워크들  
 * FlexRay는 큰 장점이 없었는지 컨소시엄도 없어져서 잘 사용안함.  
 * MOST는 정보 오락용.  
   
-![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/92e36a51-e8a0-4b2e-8259-514280b85fd8-image.png)  
+![IMAGE](https://raw.githubusercontent.com/nogi-bot/resources/main/starpolar/images/31d4eb01-28c3-4855-beb7-d81541ac4644-image.png)  
 * V2X의 X 뜻은: 모든것. Everything  
 * V2V: 무인 자동차 같이 차량과 차량의 통신.  
 * V2I: 교통 상황과의 통신.  
